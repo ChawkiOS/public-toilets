@@ -1,5 +1,6 @@
 import React from 'react';
 import { Marker } from 'react-native-maps';
+import { useNavigation } from '@react-navigation/core';
 import MapView from 'react-native-map-clustering';
 
 import useToilets from '../hooks/useToilets';
@@ -7,6 +8,7 @@ import { initialCamera, initialRegion } from '../utils/constants';
 
 export const MapScreen = () => {
   const { toilets } = useToilets();
+  const { navigate } = useNavigation();
 
   return (
     <MapView
@@ -15,13 +17,14 @@ export const MapScreen = () => {
       initialCamera={initialCamera}
       initialRegion={initialRegion}
     >
-      {toilets.map((item, index) => (
+      {toilets.map(toilet => (
         <Marker
-          key={index}
+          onPress={() => navigate('Details', { toilet })}
+          key={toilet.gid}
           tracksViewChanges={false}
           coordinate={{
-            latitude: item.lat,
-            longitude: item.lon,
+            latitude: toilet.lat,
+            longitude: toilet.lon,
           }}
         />
       ))}
