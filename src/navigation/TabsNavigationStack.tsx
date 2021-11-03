@@ -1,13 +1,33 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import { MapScreen } from '../views/MapScreen';
 import { ListScreen } from '../views/ListScreen';
+import { Colors } from '../utils/colors';
 
 const Tab = createBottomTabNavigator();
 
 export const TabNavigatorStack = () => (
-  <Tab.Navigator>
+  <Tab.Navigator
+    screenOptions={({ route }) => ({
+      tabBarIcon: ({ focused, color }) => {
+        let iconName = '';
+
+        if (route.name === 'Map') {
+          iconName = focused ? 'home' : 'home-outline';
+        } else {
+          iconName = focused ? 'calendar' : 'calendar-outline';
+        }
+
+        return <Icon name={iconName} size={20} color={color} />;
+      },
+    })}
+    tabBarOptions={{
+      activeTintColor: Colors.tomato,
+      inactiveTintColor: Colors.gray,
+    }}
+  >
     <Tab.Screen name="Map" component={MapScreen} />
     <Tab.Screen name="List" component={ListScreen} />
   </Tab.Navigator>
