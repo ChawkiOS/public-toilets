@@ -3,6 +3,8 @@ import { Text, View } from 'react-native';
 import { RouteProp, useRoute } from '@react-navigation/core';
 
 import { ToiletType } from '../types';
+import { Units } from '../utils/units';
+import { OpeningHours } from '../components';
 
 type DetailsParams = {
   Params: {
@@ -15,9 +17,15 @@ export const DetailsScreen = () => {
   const { toilet } = route.params;
 
   return (
-    <View>
-      <Text>{toilet.adresse}</Text>
+    <View style={{ padding: Units.space }}>
+      <Text style={{ fontSize: Units.fontSize.title }}>{toilet.adresse}</Text>
       <Text>{toilet.infoloc}</Text>
+      {toilet.openinghoursspecification && (
+        <OpeningHours
+          opens={toilet.openinghoursspecification[0].opens}
+          closes={toilet.openinghoursspecification[0].closes}
+        />
+      )}
     </View>
   );
 };

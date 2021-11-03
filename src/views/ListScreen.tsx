@@ -3,6 +3,7 @@ import { FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 
 import { ListItem, Separator } from '../components';
+import { Units } from '../utils/units';
 import useToilets from '../hooks/useToilets';
 
 export const ListScreen = () => {
@@ -12,7 +13,7 @@ export const ListScreen = () => {
   return (
     <FlatList
       data={toilets}
-      style={{ padding: 10 }}
+      style={{ padding: Units.space }}
       keyExtractor={({ gid }) => gid.toString()}
       ItemSeparatorComponent={() => <Separator />}
       renderItem={({ item: toilet }) => (

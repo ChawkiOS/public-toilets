@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/core';
 import MapView from 'react-native-map-clustering';
 
 import useToilets from '../hooks/useToilets';
+import { Colors } from '../utils/colors';
 import { initialCamera, initialRegion } from '../utils/constants';
 
 export const MapScreen = () => {
@@ -16,6 +17,7 @@ export const MapScreen = () => {
       style={{ flex: 1 }}
       initialCamera={initialCamera}
       initialRegion={initialRegion}
+      clusterColor={Colors.tomato}
     >
       {toilets.map(toilet => (
         <Marker
