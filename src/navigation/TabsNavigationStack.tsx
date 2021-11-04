@@ -15,9 +15,9 @@ export const TabNavigatorStack = () => (
         let iconName = '';
 
         if (route.name === 'Map') {
-          iconName = focused ? 'home' : 'home-outline';
+          iconName = focused ? 'map' : 'map-outline';
         } else {
-          iconName = focused ? 'calendar' : 'calendar-outline';
+          iconName = focused ? 'list' : 'list-outline';
         }
 
         return <Icon name={iconName} size={20} color={color} />;
